@@ -21,13 +21,7 @@
                 <DataGridTextColumn Header="Kód" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Idő" Binding="{Binding EventTime}" Width="*"/>
                 <DataGridTextColumn Header="Esemény" Binding="{Binding EventType}" Width="*"/>
-                <DataGridTemplateColumn Header="Délután van-e" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding IsItAfterNoon}" IsEnabled="False"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridCheckBoxColumn Header="Délután van-e" Binding="{Binding IsItAfterNoon, Mode=OneWay}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
