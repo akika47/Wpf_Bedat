@@ -1,0 +1,47 @@
+﻿<Window x:Class="Wpf_Bedat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_Bedat"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="dtgEvents" AutoGenerateColumns="False" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Kód" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Idő" Binding="{Binding EventTime}" Width="*"/>
+                <DataGridTextColumn Header="Esemény" Binding="{Binding EventType}" Width="*"/>
+                <DataGridTemplateColumn Header="Délután van-e" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsItAfterNoon}" IsEnabled="False"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <StackPanel Grid.Column="1">
+            <Button x:Name="btnLoad" Content="Load" Width="200" Height="40" Margin="10" Click="btnLoad_Click"/>
+            <Button x:Name="btnClear" Content="Clear" Width="200" Height="40" Margin="10" Click="btnClear_Click" />
+            <Button x:Name="btnSave" Content="SaveTo" Width="200" Height="40" Margin="10" Click="btnSave_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <ComboBox x:Name="cbxFilter" Width="200" Height="40" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="cbxFilter_SelectionChanged">
+                
+            </ComboBox>
+            <Button x:Name="btnDelete" Content="Delete" Width="200" Height="40" Margin="10" Click="btnDelete_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
