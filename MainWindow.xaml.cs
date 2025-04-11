@@ -24,7 +24,6 @@ namespace Wpf_Bedat;
 public partial class MainWindow : Window
 {
     public ObservableCollection<Esemeny> events = new();
-    public ObservableCollection<Esemeny> filteredEvents = new();
     public MainWindow()
     {
         InitializeComponent();
@@ -111,59 +110,13 @@ public partial class MainWindow : Window
 
     private void cbxFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
-        List<Esemeny> filteredList = new();
-        switch (cbxFilter.SelectedItem)
+        if (cbxFilter.SelectedItem.ToString() == "Összes")
         {
-            case "Összes":
-                dtgEvents.ItemsSource = events;
-                break;
-            case EventType.Belépés:
-                filteredList = events.Where(x => x.EventType == EventType.Belépés).ToList();
-
-                filteredEvents.Clear();
-                foreach (var item in filteredList)
-                {
-                    filteredEvents.Add(item);
-                }
-
-                dtgEvents.ItemsSource = filteredEvents;
-                break;
-            case EventType.Kilépés:
-                filteredList = events.Where(x => x.EventType == EventType.Kilépés).ToList();
-
-                filteredEvents.Clear();
-                foreach (var item in filteredList)
-                {
-                    filteredEvents.Add(item);
-                }
-
-                dtgEvents.ItemsSource = filteredEvents;
-                break;
-            case EventType.Menza:
-                filteredList = events.Where(x => x.EventType == EventType.Menza).ToList();
-
-                filteredEvents.Clear();
-                foreach (var item in filteredList)
-                {
-                    filteredEvents.Add(item);
-                }
-
-                dtgEvents.ItemsSource = filteredEvents;
-                break;
-            case EventType.Könyvtár:
-                filteredList = events.Where(x => x.EventType == EventType.Könyvtár).ToList();
-
-                filteredEvents.Clear();
-                foreach (var item in filteredList)
-                {
-                    filteredEvents.Add(item);
-                }
-
-                dtgEvents.ItemsSource = filteredEvents;
-                break;
-            default:
-                break;
+            dtgEvents.ItemsSource = events;
+        }
+        else
+        {
+            dtgEvents.ItemsSource = events.Where(x => x.EventType == (EventType)cbxFilter.SelectedItem).ToList();
         }
     }
 }
