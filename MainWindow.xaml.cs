@@ -31,6 +31,7 @@ public partial class MainWindow : Window
 
     private void btnLoad_Click(object sender, RoutedEventArgs e)
     {
+        events.Clear();
         var filePath = string.Empty;
         OpenFileDialog ofd = new();
 
